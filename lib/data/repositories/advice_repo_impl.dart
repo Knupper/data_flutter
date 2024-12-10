@@ -3,6 +3,7 @@ import 'package:flutter_schulung/data/exceptions/exceptions.dart';
 import 'package:flutter_schulung/domain/entities/advice.dart';
 import 'package:flutter_schulung/domain/failures/failure.dart';
 import 'package:flutter_schulung/domain/repositories/advice_repo.dart';
+import 'package:http/http.dart';
 import 'package:multiple_result/multiple_result.dart';
 
 class AdviceRepoImpl implements AdviceRepo {
@@ -14,7 +15,6 @@ class AdviceRepoImpl implements AdviceRepo {
   Future<Result<Advice, Failure>> getAdvice() async {
     try {
       final result = await dataSource.getAdvice();
-
       return Success(
         Advice(advice: result.advice, id: result.id),
       );
@@ -22,6 +22,8 @@ class AdviceRepoImpl implements AdviceRepo {
       return Error(
         ServerFailure(),
       );
+    } catch (e) {
+      return Error(ServerFailure());
     }
   }
 }

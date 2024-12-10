@@ -10,6 +10,7 @@ class AdviceUseCase {
 
   Future<Result<Advice, Failure>> get() {
     // special business logic
-    return repository.getAdvice();
+    final result = repository.getAdvice();
+    return result;
   }
 }
