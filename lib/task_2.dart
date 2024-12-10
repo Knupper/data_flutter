@@ -4,10 +4,17 @@ import 'package:flutter/material.dart';
 // Unten stehende Karteikarte nachbauen, Bild kann durch Placeholder ersetzt werden
 // https://img.freepik.com/vektoren-premium/farbige-profilkarte-mit-einem-benutzer-symbol-und-einzelheiten_1294240-68100.jpg?w=1800
 class PersonCard extends StatelessWidget {
-  const PersonCard({super.key});
+  const PersonCard({
+    super.key,
+    required this.id,
+  });
+
+  final int id;
 
   @override
   Widget build(BuildContext context) {
+    print('$id build');
+
     return Container(
       width: 600,
       height: 400,
@@ -35,7 +42,7 @@ class PersonCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'HEADLINE' * 19,
+                        '$id - HEADLINE' * 19,
                         maxLines: 2,
                         style: Theme.of(context).textTheme.headlineSmall,
                       ),

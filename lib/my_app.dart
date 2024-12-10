@@ -7,14 +7,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       theme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.orange,
           brightness: Brightness.light,
         ),
       ).copyWith(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headlineSmall: TextStyle(
             color: Colors.blue,
           ),
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.dark,
         ),
       ).copyWith(
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headlineSmall: TextStyle(
             color: Colors.blue,
           ),

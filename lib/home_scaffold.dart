@@ -1,16 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_schulung/add_profile_scaffold.dart';
+import 'package:flutter_schulung/profile_scaffold.dart';
 import 'package:flutter_schulung/task_2.dart';
 
-// Aufgabe 2:
-// Unten stehende Karteikarte nachbauen, Bild kann durch Placeholder ersetzt werden
-// https://img.freepik.com/vektoren-premium/farbige-profilkarte-mit-einem-benutzer-symbol-und-einzelheiten_1294240-68100.jpg?w=1800
 class HomeScaffold extends StatelessWidget {
   const HomeScaffold({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PersonCard(),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const AddProfileScaffold(),
+          ),
+        ),
+      ),
+      body: ListView.separated(
+        itemBuilder: (context, index) => InkWell(
+          onTap: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => ProfileScaffold(
+                id: index,
+              ),
+            ),
+          ),
+          child: PersonCard(
+            id: index,
+          ),
+        ),
+        separatorBuilder: (context, index) => const SizedBox(
+          height: 28,
+        ),
+        itemCount: 1000,
+      ),
     );
   }
 }
