@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_schulung/home_scaffold.dart';
+import 'package:flutter_schulung/widget/home_scaffold.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
