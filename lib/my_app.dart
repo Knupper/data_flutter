@@ -13,11 +13,23 @@ class MyApp extends StatelessWidget {
           seedColor: Colors.orange,
           brightness: Brightness.light,
         ),
+      ).copyWith(
+        textTheme: TextTheme(
+          headlineSmall: TextStyle(
+            color: Colors.blue,
+          ),
+        ),
       ),
       darkTheme: ThemeData.from(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.purple,
           brightness: Brightness.dark,
+        ),
+      ).copyWith(
+        textTheme: TextTheme(
+          headlineSmall: TextStyle(
+            color: Colors.blue,
+          ),
         ),
       ),
       home: const HomeScaffold(),
