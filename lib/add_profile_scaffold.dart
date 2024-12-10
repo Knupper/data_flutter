@@ -46,7 +46,14 @@ class _AddProfileScaffoldState extends State<AddProfileScaffold> {
               },
             ),
             OutlinedButton(
-              onPressed: () => _formKey.currentState?.validate(),
+              onPressed: () {
+                final isValid = _formKey.currentState?.validate() ?? false;
+                if (isValid) {
+                  Navigator.pop(context);
+                }
+
+                return;
+              },
               child: const Text('speichern'),
             ),
           ],
