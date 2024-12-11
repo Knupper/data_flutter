@@ -13,8 +13,6 @@ class PersonCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('$id build');
-
     return Container(
       width: 600,
       height: 400,

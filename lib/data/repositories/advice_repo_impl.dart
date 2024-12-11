@@ -14,6 +14,7 @@ class AdviceRepoImpl implements AdviceRepo {
   Future<Result<Advice, Failure>> getAdvice({String id = ''}) async {
     try {
       final result = await dataSource.getAdvice(id: id);
+
       return Success(
         Advice(advice: result.advice, id: result.id),
       );
