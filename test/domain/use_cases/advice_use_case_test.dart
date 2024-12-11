@@ -17,7 +17,11 @@ import 'advice_use_case_test.mocks.dart';
 void main() {
   group('AdviceUseCase', () {
     test('should return Advice', () async {
-      provideDummy<Result<Advice, Failure>>(Success(Advice(advice: 'dummy', id: 0)));
+      provideDummy<Result<Advice, Failure>>(
+        Success(
+          Advice(advice: 'dummy', id: 0),
+        ),
+      );
 
       final mockRepo = MockAdviceRepoImpl();
       final useCaseUnderTest = AdviceUseCase(repository: mockRepo);
