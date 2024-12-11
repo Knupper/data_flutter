@@ -5,7 +5,7 @@ import 'package:flutter_schulung/data/exceptions/exceptions.dart';
 import 'package:http/http.dart';
 
 abstract class AdviceRemoteDataSource {
-  Future<AdviceDto> getAdvice();
+  Future<AdviceDto> getAdvice({String id = ''});
 }
 
 class AdviceRestDataSource extends AdviceRemoteDataSource {
@@ -14,9 +14,9 @@ class AdviceRestDataSource extends AdviceRemoteDataSource {
   final Client client;
 
   @override
-  Future<AdviceDto> getAdvice() async {
+  Future<AdviceDto> getAdvice({String id = ''}) async {
     final response = await client.get(
-      Uri.parse('https://api.flutter-community.com/api/v1/advice'),
+      Uri.parse('https://api.flutter-community.com/api/v1/advice/$id'),
       headers: {
         'accept': 'application/json',
       },

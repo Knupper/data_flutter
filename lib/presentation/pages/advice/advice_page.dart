@@ -55,6 +55,11 @@ class AdvicePage extends StatelessWidget {
             // onPressed: context.read<AdviceCubit>().getAdvice,
             child: Text('Fetch'),
           ),
+          ElevatedButton(
+            onPressed: () => BlocProvider.of<AdviceCubit>(context).getAdvice(id: '42'),
+            // onPressed: context.read<AdviceCubit>().getAdvice,
+            child: Text('Fetch 42'),
+          ),
         ],
       ),
     );

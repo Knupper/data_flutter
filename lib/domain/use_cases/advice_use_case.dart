@@ -8,9 +8,9 @@ class AdviceUseCase {
 
   final AdviceRepo repository;
 
-  Future<Result<Advice, Failure>> get() {
+  Future<Result<Advice, Failure>> get({String id = ''}) {
     // special business logic
-    final result = repository.getAdvice();
+    final result = repository.getAdvice(id: id);
     return result;
   }
 }
