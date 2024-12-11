@@ -96,6 +96,12 @@ void main() {
 
     testWidgets('should handle random button correctly', (tester) async {
       when(() => mockCubit.getAdvice(id: '')).thenAnswer((_) async {});
+      // Die UI hat auf den cubit.state zugegriffen, das ganze war noch nicht gemocked, daher kam der Fehler
+      whenListen(
+        mockCubit,
+        Stream.fromIterable(const [AdviceEmptyState()]),
+        initialState: const AdviceEmptyState(),
+      );
 
       await tester.pumpWidget(createWidgetUnderTest());
       await tester.pumpAndSettle();
