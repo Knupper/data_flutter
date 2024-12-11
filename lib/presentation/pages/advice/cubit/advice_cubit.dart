@@ -9,7 +9,7 @@ class AdviceCubit extends Cubit<AdviceState> {
 
   final AdviceUseCase useCase;
 
-  void getAdvice({String id = ''}) {
+  Future<void> getAdvice({String id = ''}) async {
     emit(AdviceLoadingState());
     useCase.get(id: id).then(
       (value) {

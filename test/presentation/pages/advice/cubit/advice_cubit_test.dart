@@ -40,7 +40,6 @@ void main() {
           AdviceLoadingState(),
           AdviceLoadedState(text: 'text'),
         ],
-        verify: (bloc) => expect(bloc.state is AdviceEmptyState, true),
       );
 
       blocTest(

@@ -42,7 +42,10 @@ class AdvicePage extends StatelessWidget {
                 case AdviceLoadingState():
                   child = CircularProgressIndicator();
                 case AdviceLoadedState():
-                  child = Text(state.text);
+                  child = Text(
+                    state.text,
+                    key: Key('LOADED'),
+                  );
                 case AdviceErrorState():
                   child = Text('ERROR');
               }
@@ -51,11 +54,13 @@ class AdvicePage extends StatelessWidget {
             },
           ),
           ElevatedButton(
+            key: Key('random'),
             onPressed: BlocProvider.of<AdviceCubit>(context).getAdvice,
             // onPressed: context.read<AdviceCubit>().getAdvice,
             child: Text('Fetch'),
           ),
           ElevatedButton(
+            key: Key('42'),
             onPressed: () => BlocProvider.of<AdviceCubit>(context).getAdvice(id: '42'),
             // onPressed: context.read<AdviceCubit>().getAdvice,
             child: Text('Fetch 42'),
