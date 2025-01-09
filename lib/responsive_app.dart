@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_scaffold/flutter_adaptive_scaffold.dart';
+import 'package:flutter_schulung/media_query_app.dart';
 
 class ResponsiveApp extends StatelessWidget {
   const ResponsiveApp({super.key});
@@ -43,19 +44,18 @@ class ResponsiveApp extends StatelessWidget {
         appBar: AppBar(
           title: Text('AppBar'),
         ),
-        smallBody: (context) => Text('smallBody'),
         body: (context) => AdaptiveLayout(
           internalAnimations: false,
           bodyRatio: 0.3,
           body: SlotLayout(
             config: <Breakpoint, SlotLayoutConfig>{
-              Breakpoints.mediumAndUp: SlotLayout.from(
+              Breakpoints.smallAndUp: SlotLayout.from(
                 key: Key('mediumBody'),
-                builder: (context) => Text('mediumBody'),
-              ),
-              Breakpoints.largeAndUp: SlotLayout.from(
-                key: Key('largeBody'),
-                builder: (context) => Text('largeBody'),
+                builder: (context) => ListView.separated(
+                  itemCount: 10,
+                  itemBuilder: (context, index) => AdaptiveCard(),
+                  separatorBuilder: (context, index) => const Divider(),
+                ),
               ),
             },
           ),
@@ -70,6 +70,56 @@ class ResponsiveApp extends StatelessWidget {
         ),
         useDrawer: false,
       ),
+    );
+  }
+}
+
+class AdaptiveCard extends StatelessWidget {
+  const AdaptiveCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final isSmallBreakpoint = context.isSmallBreakpoint;
+    late Widget child;
+
+    if (isSmallBreakpoint) {
+      child = Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Placeholder(
+            fallbackWidth: 200,
+            fallbackHeight: 200,
+            color: Colors.amber,
+          ),
+          Text('AdaptiveCard'),
+          Flexible(child: Text('SuperLangerText' * 10)),
+        ],
+      );
+    } else {
+      child = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Placeholder(
+            fallbackWidth: 200,
+            fallbackHeight: 200,
+            color: Colors.amber,
+          ),
+          Flexible(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('AdaptiveCard'),
+                Flexible(child: Text('SuperLangerText' * 10)),
+              ],
+            ),
+          )
+        ],
+      );
+    }
+
+    return Container(
+      color: Colors.greenAccent,
+      child: child,
     );
   }
 }
