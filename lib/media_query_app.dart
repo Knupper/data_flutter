@@ -38,6 +38,10 @@ class MediaQueryApp extends StatelessWidget {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final size = MediaQuery.sizeOf(context);
+              final breakpoint = context.displayBreakpoint;
+              context.isLargeBreakpoint;
+              context.isSmallBreakpoint;
+
               // DO not use : final size = MediaQuery.of(context).size;
               // print('size: $size');
               print('size of parent widget $constraints');
@@ -51,3 +55,23 @@ class MediaQueryApp extends StatelessWidget {
     );
   }
 }
+
+extension BreakpointExtension on BuildContext {
+  bool get isSmallBreakpoint => MediaQuery.sizeOf(this).width < 600;
+
+  bool get isMediumBreakpoint => MediaQuery.sizeOf(this).width < 1200;
+
+  bool get isLargeBreakpoint => !isSmallBreakpoint && !isMediumBreakpoint;
+
+  DisplayBreakpoint get displayBreakpoint {
+    if (isSmallBreakpoint) {
+      return DisplayBreakpoint.small;
+    } else if (isMediumBreakpoint) {
+      return DisplayBreakpoint.medium;
+    } else {
+      return DisplayBreakpoint.large;
+    }
+  }
+}
+
+enum DisplayBreakpoint { small, medium, large }
